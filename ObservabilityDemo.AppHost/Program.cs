@@ -1,10 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
-var db = builder.AddPostgres("pgsql").AddDatabase("weatherdb");
 
-var apiService = builder.AddProject<Projects.ObservabilityDemo_ApiService>("apiservice")
-    .WithReference(db);
+var apiService = builder.AddProject<Projects.ObservabilityDemo_ApiService>("apiservice");
 
 builder.AddProject<Projects.ObservabilityDemo_Web>("webfrontend")
     .WithExternalHttpEndpoints()
@@ -14,3 +12,8 @@ builder.AddProject<Projects.ObservabilityDemo_Web>("webfrontend")
     .WaitFor(apiService);
 
 builder.Build().Run();
+
+#region Database
+//var db = builder.AddPostgres("pgsql").AddDatabase("weatherdb");
+//.WithReference(db);
+#endregion
