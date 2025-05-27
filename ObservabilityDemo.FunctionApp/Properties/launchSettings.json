@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ObservabilityDemo.FunctionApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7200",
+      "launchBrowser": false
+    }
+  }
+}

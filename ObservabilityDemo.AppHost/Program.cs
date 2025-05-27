@@ -17,3 +17,7 @@ builder.Build().Run();
 //var db = builder.AddPostgres("pgsql").AddDatabase("weatherdb");
 //.WithReference(db);
 #endregion
+
+#region Function
+//builder.AddAzureFunctionsProject<Projects.ObservabilityDemo_FunctionApp>("functionapp");
+#endregion
