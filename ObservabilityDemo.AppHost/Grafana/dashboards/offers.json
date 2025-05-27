@@ -1,0 +1,351 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ee5270zbe1vk0c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "Стоимость",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "currencyRUB"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_price Sms5SimProvider"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "5SIM"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_price SmsActivateProvider"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SMS-Activate"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_price SmsBowerProvider"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SmsBower"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_price SmsGrizzlyProvider"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Grizzly SMS"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg_price SmsHubProvider"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SMS-HUB"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "",
+      "targets": [
+        {
+          "builderOptions": {
+            "aggregates": [],
+            "columns": [
+              {
+                "alias": "service",
+                "custom": false,
+                "name": "service",
+                "type": "String"
+              },
+              {
+                "alias": "provider",
+                "custom": false,
+                "name": "provider",
+                "type": "String"
+              },
+              {
+                "alias": "country",
+                "custom": false,
+                "name": "country",
+                "type": "String"
+              },
+              {
+                "hint": "time",
+                "name": "timestamp",
+                "type": "DateTime"
+              }
+            ],
+            "database": "DrizzleTelemetry",
+            "filters": [
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "hint": "time",
+                "key": "",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              }
+            ],
+            "groupBy": [],
+            "limit": 1000,
+            "meta": {},
+            "mode": "aggregate",
+            "orderBy": [
+              {
+                "default": true,
+                "dir": "ASC",
+                "hint": "time",
+                "name": ""
+              }
+            ],
+            "queryType": "timeseries",
+            "table": "offers"
+          },
+          "editorType": "sql",
+          "format": 0,
+          "meta": {
+            "builderOptions": {
+              "aggregates": [],
+              "columns": [
+                {
+                  "alias": "service",
+                  "custom": false,
+                  "name": "service",
+                  "type": "String"
+                },
+                {
+                  "alias": "provider",
+                  "custom": false,
+                  "name": "provider",
+                  "type": "String"
+                },
+                {
+                  "alias": "country",
+                  "custom": false,
+                  "name": "country",
+                  "type": "String"
+                },
+                {
+                  "hint": "time",
+                  "name": "timestamp",
+                  "type": "DateTime"
+                }
+              ],
+              "database": "DrizzleTelemetry",
+              "filters": [
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "hint": "time",
+                  "key": "",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                }
+              ],
+              "groupBy": [],
+              "limit": 1000,
+              "meta": {},
+              "mode": "aggregate",
+              "orderBy": [
+                {
+                  "default": true,
+                  "dir": "ASC",
+                  "hint": "time",
+                  "name": ""
+                }
+              ],
+              "queryType": "timeseries",
+              "table": "offers"
+            }
+          },
+          "pluginVersion": "4.5.1",
+          "queryType": "timeseries",
+          "rawSql": "SELECT\r\n    toStartOfInterval(timestamp, INTERVAL 5 minute) AS time,\r\n    provider,                                          \r\n    AVG(price) AS avg_price                               \r\nFROM\r\n    DrizzleTelemetry.offers                             \r\nWHERE\r\n    service = '${service}'                             \r\n    AND country = '${country}'                          \r\nGROUP BY\r\n    time, provider                                    \r\nORDER BY\r\n    time ASC                                         ",
+          "refId": "A"
+        }
+      ],
+      "title": "Средняя цена за сервис по выбранной стране",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "tg",
+          "value": "tg"
+        },
+        "datasource": {
+          "type": "grafana-clickhouse-datasource",
+          "uid": "ee5270zbe1vk0c"
+        },
+        "definition": "SELECT service FROM DrizzleTelemetry.offers",
+        "label": "Service",
+        "name": "service",
+        "options": [],
+        "query": "SELECT service FROM DrizzleTelemetry.offers",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "15",
+          "value": "15"
+        },
+        "datasource": {
+          "type": "grafana-clickhouse-datasource",
+          "uid": "ee5270zbe1vk0c"
+        },
+        "definition": "SELECT country from DrizzleTelemetry.offers",
+        "label": "Country",
+        "name": "country",
+        "options": [],
+        "query": "SELECT country from DrizzleTelemetry.offers",
+        "refresh": 1,
+        "regex": "",
+        "sort": 3,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2024-11-26T00:23:42.838Z",
+    "to": "2024-11-26T02:02:07.050Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Offers",
+  "uid": "de527ouufqh34d",
+  "version": 2,
+  "weekStart": ""
+}

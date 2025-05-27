@@ -1,3 +1,7 @@
+using ObservabilityDemo.AppHost.Aspirations.Grafana;
+using ObservabilityDemo.AppHost.Aspirations.OtelCollector;
+using ObservabilityDemo.AppHost.Aspirations.Prometheus;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
@@ -20,4 +24,16 @@ builder.Build().Run();
 
 #region Function
 //builder.AddAzureFunctionsProject<Projects.ObservabilityDemo_FunctionApp>("functionapp");
+#endregion
+
+#region Grafana
+//builder.AddOtelCollector("otel-collector")
+//    .WithConfig("Telemetry/custom-config.yaml");
+
+//builder.AddGrafana("grafana")
+//    .WithConfig("Grafana/config")
+//    .WithDashboards("Grafana/dashboards");
+
+//builder.AddPrometheus("prometheus")
+//    .WithConfig("Prometheus");
 #endregion

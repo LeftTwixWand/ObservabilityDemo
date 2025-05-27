@@ -1,0 +1,62 @@
+[
+  {
+    "name": "smsactivateprovider_enabled",
+    "default_enabled": true,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": false,
+    "multivariate": []
+  },
+  {
+    "name": "smsbowerprovider_enabled",
+    "default_enabled": true,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": false,
+    "multivariate": []
+  },
+  {
+    "name": "smshubprovider_enabled",
+    "default_enabled": true,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": true,
+    "multivariate": []
+  },
+  {
+    "name": "smsregsmsprovider_enabled",
+    "default_enabled": false,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": false,
+    "multivariate": []
+  },
+  {
+    "name": "smsmanprovider_enabled",
+    "default_enabled": true,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": false,
+    "multivariate": []
+  },
+  {
+    "name": "smsgrizzlyprovider_enabled",
+    "default_enabled": true,
+    "is_server_key_only": false,
+    "initial_value": null,
+    "value": null,
+    "type": "unicode",
+    "enabled": false,
+    "multivariate": []
+  }
+]

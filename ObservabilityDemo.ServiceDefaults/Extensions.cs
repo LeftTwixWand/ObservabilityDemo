@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.ServiceDiscovery;
-using OpenTelemetry;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
@@ -70,21 +70,39 @@ public static class Extensions
         return builder;
     }
 
-    private static TBuilder AddOpenTelemetryExporters<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
+    private static TBuilder AddOpenTelemetryExporters<TBuilder>(this TBuilder builder)
+    where TBuilder : IHostApplicationBuilder
     {
-        var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+        // var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+        const string AspireExporter = "AspireExporter";
+        const string SideCarExporter = "SidecarExporter";
 
-        if (useOtlpExporter)
+        var otlpSideCarEndpoint = new Uri("http://localhost:4317");
+        var aspireExporter = new Uri(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"] ?? "http://localhost:4318");
+
+        Action<OtlpExporterOptions> configureAspireExporter = options =>
         {
-            builder.Services.AddOpenTelemetry().UseOtlpExporter();
-        }
+            options.Endpoint = aspireExporter;
+            options.Protocol = OtlpExportProtocol.Grpc;
+        };
+        Action<OtlpExporterOptions> configureSideCarExporter = options =>
+        {
+            options.Endpoint = otlpSideCarEndpoint;
+            options.Protocol = OtlpExportProtocol.Grpc;
+        };
 
-        // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
-        //if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
-        //{
-        //    builder.Services.AddOpenTelemetry()
-        //       .UseAzureMonitor();
-        //}
+        builder.Logging
+            .AddOpenTelemetry(options => options
+                .AddOtlpExporter(AspireExporter, configureAspireExporter)
+                .AddOtlpExporter(SideCarExporter, configureSideCarExporter));
+
+        builder.Services.AddOpenTelemetry()
+            .WithMetrics(options => options
+                .AddOtlpExporter(AspireExporter, configureAspireExporter)
+                .AddOtlpExporter(SideCarExporter, configureSideCarExporter))
+            .WithTracing(options => options
+                .AddOtlpExporter(AspireExporter, configureAspireExporter)
+                .AddOtlpExporter(SideCarExporter, configureSideCarExporter));
 
         return builder;
     }
